@@ -5,12 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>left iframe</title>
     <style>
-        body{
+        body {
             color: aliceblue;
+            background-color: #121212; /* 메인 페이지의 iframe-wrapper 배경색과 일치 */
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .ai-button {
+            display: block; /* 블록 요소로 만들어 너비 꽉 채우기 */
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #333;
+            color: aliceblue;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        .ai-button:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
-    left iframe
+    <button class="ai-button" data-url="http://www.ducsi.ac.kr/Ducsi/ducsi_new/community/notice_list.jsp">✨ 듀이카 공지</button>
+    <button class="ai-button" data-url="http://www.ducsi.ac.kr/Ducsi/ducsi_new/subject/curriculum.jsp?flag=comp">🐈 컴퓨터공학과 강의계획서</button>
+    <button class="ai-button" data-url="http://www.ducsi.ac.kr/Ducsi/ducsi_new/student/info_form_list.jsp">♊ 듀이카 양식함</button>
+    <button class="ai-button" data-url="http://www.ducsi.ac.kr/Ducsi/ducsi_new/undergraduate/cyber_data.jsp?page=1&flag=mpboard&mode=W&keyword=&CID=&proid=&pronm=%EC%9C%A4%EC%84%B1%EB%A6%BC&sabun=20053004&userid=yslhappy">🎨 윤성림교수님 사이버강의실</button>
+    
+    <script>
+        // 버튼 클릭 이벤트 핸들러
+        document.querySelectorAll('.ai-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetUrl = this.getAttribute('data-url');
+                
+                // 최상위 문서(index.html)에 있는 'right'라는 이름의 iframe을 찾아서 src를 변경합니다.
+                // iframe은 'target' 속성 대신 'name' 속성을 사용했으므로, 
+                // parent.window.frames['right']를 사용하여 접근해야 합니다.
+                const rightIframe = parent.window.frames['right'];
+                
+                if (rightIframe) {
+                    rightIframe.location.href = targetUrl;
+                } else {
+                    console.error("오른쪽 iframe을 찾을 수 없습니다.");
+                    // Fallback: 새 탭에서 열기
+                    window.open(targetUrl, '_blank'); 
+                }
+            });
+        });
+    </script>
+    
+        
+
 </body>
 </html>
