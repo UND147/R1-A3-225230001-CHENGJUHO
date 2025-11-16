@@ -4,27 +4,111 @@
     background: #121212;
     color: #ffffff;
     margin: 0;
+    overflow-y: scroll;
     }
-    /* 헤더 */
+    ::-webkit-scrollbar {
+    width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+    background: #1e1e1e;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: #3a3a3a;
+    border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background: #4a4a4a;
+    }
     #header 
     {
     background: #1e1e1e;
-    padding: 20px 40px;
+    padding: 10px 60px;
     border-bottom: 1px solid #2a2a2a;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     font-size: 12px;
     font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', arial, sans-serif;;
     }
-    header h1 
+    #header h1 
     {
     font-size: 24px;
     font-weight: 600;
     margin-right: 10px;
     }
-    header img{
+    .button-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto; 
+    margin-right: 20px;
+    }
+    .button-wrapper a {
+    display: flex;
+    align-items: center;
+    transition: opacity 0.3s;
+    position: relative;
+    }
+    .button-wrapper a:hover {
+    opacity: 0.7;
+    }
+    .button-wrapper a[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2a2a2a;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid #3a3a3a;
+    }
+    .button-wrapper a[data-tooltip]::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-bottom-color: #2a2a2a;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 1000;
+    }
+
+/* hover 시 툴팁 표시 */
+    .button-wrapper a[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(2px);
+    }
+
+    .button-wrapper a[data-tooltip]:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(2px);
+    }
+
+    .login-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    }
+    
+    #header img{
         height: 48px;
         width: 48px;
+    }
+    #header .button-wrapper img{
+        height: 36px;
+        width: 36px;
     }
     .iText{
         margin: -2px 0 0;
